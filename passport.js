@@ -6,8 +6,8 @@ const passport = require("passport");
 passport.use(
   new FacebookStrategy(
     {
-      clientID: process.env.REACT_APP_API_CLIENT_ID_GITHUB,
-      clientSecret: process.env.REACT_APP_API_CLIENT_SECRET_GITHUB,
+      clientID: process.env.ID_SECRET,
+      clientSecret: process.env.ID_SECRET,
       callbackURL: "/auth/facebook/callback"
     },
     function (accessToken, refreshToken, profile, done) {
@@ -30,11 +30,12 @@ passport.use(
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.REACT_APP_API_ID_CLIENT_GOOGLE,
-      clientSecret: process.env.REACT_APP_API_CLIENT_SECRET_GOOGLE,
+      clientID: process.env.ID_CLIENT,
+      clientSecret: process.env.ID_SECRET,
       callbackURL: "/auth/google/callback"
     },
     function (accessToken, refreshToken, profile, done) {
+      console.log(profile._json);
       const user = {
         name: profile._json.name,
         email: profile._json.email,
